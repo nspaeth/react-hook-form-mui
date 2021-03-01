@@ -1,12 +1,13 @@
 import TextField from '@material-ui/core/TextField'
 import { Controller, useFormContext } from 'react-hook-form'
-import getErrorMessages from './helpers/getErrorMessages'
+// import getErrorMessages from './helpers/getErrorMessages'
 import { TextFieldElementProps } from './formTypes'
 import React from 'react'
 
 export default function TextFieldElement({
   validation = {},
   parseError,
+		parseErrors,
   type,
   required,
   name,
@@ -24,7 +25,10 @@ export default function TextFieldElement({
       message: 'email'
     }
   }
-  const errorMessages = getErrorMessages(name, errors, parseError)
+		// const errorMessages = getErrorMessages(name, errors, parseError)
+		const errorMessages = parseErrors
+												? parseErrors(name, errors)
+												: errors?.[name]?.message;
   return (
     <Controller
       required={required}

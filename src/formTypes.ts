@@ -87,4 +87,5 @@ export type TextFieldElementProps = Omit<TextFieldProps,
   validation?: any
   name: string
   parseError?: Function
+		parseErrors(name: string, errors: any): string
 }
